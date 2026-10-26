@@ -49,9 +49,13 @@ function initScrollReveal() {
   if (state.reducedMotion || !('IntersectionObserver' in window)) return;
 
   const revealGroups = [
-    { selector: '.about-info-blocks .info-block', delay: 0.08 },
+    { selector: '.section-header', delay: 0.06 },
+    { selector: '.about-copy, .about-stats', delay: 0.08 },
+    { selector: '.focus-card', delay: 0.07 },
+    { selector: '.skill-card', delay: 0.06 },
     { selector: '.project-card', delay: 0.1 },
     { selector: '.timeline-item', delay: 0.08 },
+    { selector: '.contact-copy, .contact-card', delay: 0.07 },
   ];
 
   const observer = new IntersectionObserver(
@@ -79,6 +83,102 @@ function initScrollReveal() {
       observer.observe(element);
     });
   });
+}
+
+/* -----------------------------------------------
+   Portrait Tilt (subtle CSS 3D)
+   ----------------------------------------------- */
+function initPortraitTilt() {
+  if (state.reducedMotion) return;
+
+  const heroVisual = document.querySelector('.hero-visual');
+  const portraitStack = document.querySelector('.portrait-stack');
+  if (!heroVisual || !portraitStack) return;
+
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  if (!finePointer.matches) return;
+
+  let frame = null;
+  let tiltX = 0;
+  let tiltY = 0;
+
+  function applyTilt() {
+    portraitStack.style.setProperty('--tilt-x', `${tiltX.toFixed(2)}deg`);
+    portraitStack.style.setProperty('--tilt-y', `${tiltY.toFixed(2)}deg`);
+    frame = null;
+  }
+
+  function queueTilt() {
+    if (frame !== null) return;
+    frame = window.requestAnimationFrame(applyTilt);
+  }
+
+  heroVisual.addEventListener('pointermove', (event) => {
+    if (state.reducedMotion) return;
+
+    const rect = heroVisual.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    tiltX = Math.max(-4, Math.min(4, -y * 8));
+    tiltY = Math.max(-5, Math.min(5, x * 10));
+    queueTilt();
+  });
+
+  heroVisual.addEventListener('pointerleave', () => {
+    tiltX = 0;
+    tiltY = 0;
+    queueTilt();
+  });
+
+  finePointer.addEventListener('change', (event) => {
+    if (event.matches) return;
+    tiltX = 0;
+    tiltY = 0;
+    queueTilt();
+  });
+}
+
+/* -----------------------------------------------
+   Background Word Parallax
+   ----------------------------------------------- */
+function initParallax() {
+  if (state.reducedMotion) return;
+
+  const items = Array.from(document.querySelectorAll('[data-parallax]'));
+  if (!items.length) return;
+
+  let ticking = false;
+
+  function updateParallax() {
+    const viewportCenter = window.innerHeight / 2;
+
+    items.forEach((item) => {
+      const factor = Number.parseFloat(item.dataset.parallax) || 0;
+      const parent = item.offsetParent;
+      const parentTop = parent ? parent.getBoundingClientRect().top : 0;
+      const itemCenter = parentTop + item.offsetTop + item.offsetHeight / 2;
+      const offset = (viewportCenter - itemCenter) * factor * 10;
+      const clamped = Math.max(-70, Math.min(70, offset));
+      item.style.setProperty('--parallax', `${clamped.toFixed(1)}px`);
+    });
+
+    ticking = false;
+  }
+
+  function handleScroll() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateParallax);
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('resize', handleScroll, { passive: true });
+  updateParallax();
+
+  if (document.fonts?.ready) {
+    document.fonts.ready.then(handleScroll).catch(() => {});
+  }
 }
 
 /* -----------------------------------------------
@@ -251,7 +351,7 @@ function initMobileMenu() {
   window.addEventListener(
     'resize',
     () => {
-      if (window.innerWidth > 768 && state.mobileMenuOpen) {
+      if (window.innerWidth > 1024 && state.mobileMenuOpen) {
         closeMobileMenu({ restoreFocus: false });
         dom.navbar?.querySelector('.navbar-logo')?.focus({ preventScroll: true });
       }
@@ -324,6 +424,8 @@ function init() {
   initReducedMotion();
   initNavbarTransition();
   initScrollReveal();
+  initPortraitTilt();
+  initParallax();
   initMobileMenu();
   initSmoothScroll();
   initSectionHighlighting();

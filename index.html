@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#F6F6F6">
-  <title>Fiona Lynn Papas - Full-Stack Developer & Cybersecurity Enthusiast</title>
+  <meta name="theme-color" content="#F3F6FA">
+  <meta name="description" content="Fiona Lynn Papas — full-stack developer and cybersecurity enthusiast building modern web applications and practical digital solutions.">
+  <title>Fiona Lynn Papas — Full-Stack Developer &amp; Cybersecurity Enthusiast</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Bricolage+Grotesque:wght@400;500;600;700&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <!-- Skip link for accessibility -->
@@ -18,19 +19,27 @@
   <!-- Navigation -->
   <nav class="navbar" aria-label="Main navigation">
     <div class="navbar-container">
-      <a href="#home" class="navbar-logo">Fiona Lynn Papas</a>
-      
+      <a href="#home" class="navbar-logo" aria-label="Fiona Lynn Papas — home">
+        <span>FLP</span><span class="logo-dot" aria-hidden="true">.</span>
+      </a>
+
       <ul class="navbar-links" aria-label="Navigation links">
         <li><a href="#home" class="navbar-link active" aria-current="location">Home</a></li>
         <li><a href="#about" class="navbar-link">About</a></li>
         <li><a href="#skills" class="navbar-link">Skills</a></li>
         <li><a href="#projects" class="navbar-link">Projects</a></li>
+        <li><a href="#approach" class="navbar-link">Approach</a></li>
         <li><a href="#contact" class="navbar-link">Contact</a></li>
       </ul>
-      
-      <a href="assets/resume/resume.pdf" download class="navbar-button">Resume</a>
-      
-      <button class="navbar-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+
+      <a href="assets/resume/resume.pdf" download class="navbar-button">
+        <span>Resume</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" />
+        </svg>
+      </a>
+
+      <button type="button" class="navbar-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span>
         <span></span>
         <span></span>
@@ -40,373 +49,698 @@
 
   <!-- Mobile navigation overlay -->
   <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation" aria-hidden="true">
-    <button class="mobile-menu-close" aria-label="Close mobile menu">
+    <button type="button" class="mobile-menu-close" aria-label="Close mobile menu">
       <span></span>
       <span></span>
     </button>
-    <ul>
-      <li><a href="#home" class="mobile-link active" aria-current="location">Home</a></li>
-      <li><a href="#about" class="mobile-link">About</a></li>
-      <li><a href="#skills" class="mobile-link">Skills</a></li>
-      <li><a href="#projects" class="mobile-link">Projects</a></li>
-      <li><a href="#contact" class="mobile-link">Contact</a></li>
-      <li><a href="assets/resume/resume.pdf" download class="mobile-link">Resume</a></li>
-    </ul>
+
+    <div class="mobile-menu-inner">
+      <p class="mobile-menu-kicker">Navigation</p>
+      <ul>
+        <li><a href="#home" class="mobile-link active" aria-current="location"><span>01</span> Home</a></li>
+        <li><a href="#about" class="mobile-link"><span>02</span> About</a></li>
+        <li><a href="#skills" class="mobile-link"><span>03</span> Skills</a></li>
+        <li><a href="#projects" class="mobile-link"><span>04</span> Projects</a></li>
+        <li><a href="#approach" class="mobile-link"><span>05</span> Approach</a></li>
+        <li><a href="#contact" class="mobile-link"><span>06</span> Contact</a></li>
+      </ul>
+
+      <a href="assets/resume/resume.pdf" download class="mobile-resume">
+        Download resume
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" />
+        </svg>
+      </a>
+
+      <div class="mobile-menu-meta">
+        <span class="availability"><span class="availability-dot"></span> Available for work</span>
+        <a href="mailto:markoys@example.com">markoys@example.com</a>
+      </div>
+    </div>
   </div>
 
   <!-- Main content area -->
   <main id="main-content" tabindex="-1">
     <!-- Hero Section -->
     <section class="hero" id="home" aria-label="Hero section">
-      <div class="hero-container">
-        <div class="hero-content">
-          <p class="hero-eyebrow">FULL-STACK DEVELOPER · CYBERSECURITY ENTHUSIAST</p>
-          
-          <h1 class="hero-heading">Fiona Lynn Papas</h1>
-          
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--one" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--two" aria-hidden="true"></div>
+
+      <div class="container hero-container">
+        <div class="hero-text">
+          <p class="hero-eyebrow">
+            <span class="eyebrow-part"><span class="eyebrow-bracket" aria-hidden="true">&lt;</span> Full-stack developer</span>
+            <span class="eyebrow-dot" aria-hidden="true">·</span>
+            <span class="eyebrow-part">Cybersecurity enthusiast <span class="eyebrow-bracket" aria-hidden="true">/&gt;</span></span>
+          </p>
+
+          <p class="hero-intro">Hi, I'm</p>
+
+          <h1 class="hero-heading">
+            <span class="name-line">Fiona</span>
+            <span class="name-line name-line--accent">Lynn Papas</span>
+          </h1>
+
           <p class="hero-description">I build modern web applications and practical digital solutions with a focus on usability, performance, and security.</p>
-          
-          <div class="hero-buttons">
-            <a href="#projects" class="btn btn-primary">Explore My Work</a>
-            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-          </div>
-          
-          <div class="hero-indicators">
-            <span class="hero-availability">Available for work</span>
-            <div class="hero-scroll-indicator">
-              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              Explore my work
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 12h14m0 0-5-5m5 5-5 5" />
               </svg>
+            </a>
+            <a href="#contact" class="btn btn-outline">Let's talk</a>
+            <a href="assets/resume/resume.pdf" download class="btn btn-quiet">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" />
+              </svg>
+              Resume
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <span class="availability"><span class="availability-dot"></span> Available for work</span>
+
+            <div class="hero-socials" aria-label="Social links">
+              <a href="https://github.com/fionapapas" class="social-link" target="_blank" rel="noopener" aria-label="GitHub profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+              </a>
+              <a href="https://linkedin.com/in/fiona" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+                </svg>
+              </a>
             </div>
           </div>
         </div>
 
-        <div class="hero-portrait">
-          <div class="hero-portrait-frame">
-            <img
-              src="assets/images/fiona-portrait.jpg"
-              srcset="assets/images/fiona-portrait-540.jpg 540w, assets/images/fiona-portrait.jpg 900w"
-              sizes="(min-width: 1200px) 420px, (min-width: 900px) 36vw, 300px"
-              width="900"
-              height="1200"
-              alt="Portrait of Fiona Lynn Papas"
-              fetchpriority="high"
-            >
+        <div class="hero-visual">
+          <div class="portrait-orbit" aria-hidden="true"></div>
+
+          <div class="portrait-stack">
+            <div class="portrait-backdrop" aria-hidden="true"></div>
+
+            <figure class="portrait-card">
+              <img
+                src="assets/images/fiona-portrait.jpg"
+                srcset="assets/images/fiona-portrait-540.jpg 540w, assets/images/fiona-portrait.jpg 900w"
+                sizes="(min-width: 1200px) 420px, (min-width: 900px) 38vw, 320px"
+                width="900"
+                height="1200"
+                alt="Portrait of Fiona Lynn Papas"
+                fetchpriority="high"
+              >
+              <figcaption class="portrait-caption">
+                <span class="caption-index">01</span>
+                <span>Full-stack developer<br>Cybersecurity enthusiast</span>
+              </figcaption>
+            </figure>
+
+            <div class="portrait-badge" aria-hidden="true">
+              <span class="badge-dot"></span>
+              <span>Portfolio / 2026</span>
+            </div>
+
+            <span class="hero-chip hero-chip--one" aria-hidden="true">UI / UX</span>
+            <span class="hero-chip hero-chip--two" aria-hidden="true">Security</span>
+            <span class="hero-chip hero-chip--three" aria-hidden="true">Full-stack</span>
           </div>
         </div>
       </div>
+
+      <div class="hero-word" data-parallax="0.06" aria-hidden="true">Full-Stack</div>
     </section>
 
     <!-- About Section -->
-    <section class="about" id="about" aria-label="About section">
-      <div class="section-header">
-        <h2 class="section-heading">A little about me.</h2>
-      </div>
-      
-      <div class="about-container">
-        <div class="about-content">
-          <p class="about-description">
-            I'm a full-stack developer with a strong interest in cybersecurity, specializing in building responsive websites and practical web applications. I enjoy solving technical problems, improving workflows, and developing effective solutions with a focus on secure software development.
-          </p>
-          
-          <div class="about-buttons">
-            <a href="assets/resume/resume.pdf" download class="btn btn-secondary">Download Resume</a>
+    <section class="section about" id="about" aria-label="About section">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-number" aria-hidden="true">02</span>
+          <div class="section-heading-group">
+            <span class="kicker">About</span>
+            <h2 class="section-heading">a little <em>about me</em></h2>
+            <p class="section-subtitle">Full-stack development with a security-first mindset.</p>
+          </div>
+        </header>
+
+        <div class="about-grid">
+          <div class="about-copy">
+            <p class="about-lead">I'm a <strong>full-stack developer</strong> with a strong interest in <strong>cybersecurity</strong>, specializing in building responsive websites and practical web applications.</p>
+            <p>I enjoy solving technical problems, improving workflows, and developing effective solutions with a focus on <strong>secure software development</strong>.</p>
+            <a href="assets/resume/resume.pdf" download class="btn btn-outline">
+              Download resume
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" />
+              </svg>
+            </a>
+          </div>
+
+          <div class="about-stats">
+            <div class="stat-card">
+              <span class="stat-number">03</span>
+              <span class="stat-label">Projects completed</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">05</span>
+              <span class="stat-label">Skill areas</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">12</span>
+              <span class="stat-label">Technologies</span>
+            </div>
           </div>
         </div>
-        
-        <div class="about-stats">
-          <div class="stat-block">
-            <p class="stat-number"> years experience</p>
-            <p class="stat-label">in development</p>
-          </div>
-          <div class="stat-block">
-            <p class="stat-number"> projects</p>
-            <p class="stat-label">completed</p>
-          </div>
-          <div class="stat-block">
-            <p class="stat-number"> tech</p>
-            <p class="stat-label">stacks</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="about-info-blocks">
-        <div class="info-block">
-          <h3 class="info-block-title">Development</h3>
-          <ul class="info-block-list">
-            <li>Creating responsive websites and practical web applications</li>
-            <li>Building user-friendly interfaces and experiences</li>
-            <li>Implementing clean, maintainable code</li>
-          </ul>
-        </div>
-        
-        <div class="info-block">
-          <h3 class="info-block-title">Problem Solving</h3>
-          <ul class="info-block-list">
-            <li>Debugging and troubleshooting issues</li>
-            <li>Improving workflows and development processes</li>
-            <li>Developing effective solutions for technical challenges</li>
-          </ul>
-        </div>
-        
-        <div class="info-block">
-          <h3 class="info-block-title">Cybersecurity</h3>
-          <ul class="info-block-list">
-            <li>Exploring network security and web application security</li>
-            <li>Learning about ethical hacking practices</li>
-            <li>Understanding secure software development</li>
-          </ul>
+
+        <div class="focus-grid">
+          <article class="focus-card">
+            <div class="focus-top">
+              <span class="focus-index">01</span>
+              <span class="focus-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="m8 6-6 6 6 6M16 6l6 6-6 6M14 4l-4 16" />
+                </svg>
+              </span>
+            </div>
+            <h3>Development</h3>
+            <ul>
+              <li>Creating responsive websites and practical web applications</li>
+              <li>Building user-friendly interfaces and experiences</li>
+              <li>Implementing clean, maintainable code</li>
+            </ul>
+          </article>
+
+          <article class="focus-card">
+            <div class="focus-top">
+              <span class="focus-index">02</span>
+              <span class="focus-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M9 18h6M10 21h4M8 14a6 6 0 1 1 8 0c-.7.8-1 1.5-1 3H9c0-1.5-.3-2.2-1-3Z" />
+                </svg>
+              </span>
+            </div>
+            <h3>Problem Solving</h3>
+            <ul>
+              <li>Debugging and troubleshooting issues</li>
+              <li>Improving workflows and development processes</li>
+              <li>Developing effective solutions for technical challenges</li>
+            </ul>
+          </article>
+
+          <article class="focus-card">
+            <div class="focus-top">
+              <span class="focus-index">03</span>
+              <span class="focus-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M12 3 4 6v6c0 4.4 3.4 8.4 8 9 4.6-.6 8-4.6 8-9V6l-8-3Z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+              </span>
+            </div>
+            <h3>Cybersecurity</h3>
+            <ul>
+              <li>Exploring network security and web application security</li>
+              <li>Learning about ethical hacking practices</li>
+              <li>Understanding secure software development</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- Skills Section -->
-    <section class="skills" id="skills" aria-label="Skills section">
-      <div class="section-header">
-        <h2 class="section-heading">Skills</h2>
-      </div>
-      
-      <div class="skills-container">
+    <section class="section skills" id="skills" aria-label="Skills section">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-number" aria-hidden="true">03</span>
+          <div class="section-heading-group">
+            <span class="kicker">Expertise</span>
+            <h2 class="section-heading">my tech <em>stack</em></h2>
+            <p class="section-subtitle">Technologies I use to bring ideas to life.</p>
+          </div>
+        </header>
+
         <div class="skills-grid">
-          <div class="skills-category">
-            <h3 class="category-title">Frontend</h3>
-            <div class="category-tags">
+          <article class="skill-card">
+            <div class="skill-card-top">
+              <span class="skill-index">01</span>
+              <span class="skill-icon" aria-hidden="true">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3" y="4" width="18" height="13" rx="2" />
+                  <path d="M8 21h8M12 17v4" />
+                </svg>
+              </span>
+            </div>
+            <h3>Frontend</h3>
+            <div class="tag-row">
               <span class="tag">HTML5</span>
               <span class="tag">CSS3</span>
               <span class="tag">JavaScript</span>
             </div>
-          </div>
-          
-          <div class="skills-category">
-            <h3 class="category-title">Backend Technologies</h3>
-            <div class="category-tags">
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-card-top">
+              <span class="skill-index">02</span>
+              <span class="skill-icon" aria-hidden="true">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3" y="4" width="18" height="6" rx="1.5" />
+                  <rect x="3" y="14" width="18" height="6" rx="1.5" />
+                  <path d="M7 7h.01M7 17h.01" />
+                </svg>
+              </span>
+            </div>
+            <h3>Backend</h3>
+            <div class="tag-row">
               <span class="tag">Python</span>
               <span class="tag">FastAPI</span>
               <span class="tag">Node.js</span>
             </div>
-          </div>
-          
-          <div class="skills-category">
-            <h3 class="category-title">Databases</h3>
-            <div class="category-tags">
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-card-top">
+              <span class="skill-index">03</span>
+              <span class="skill-icon" aria-hidden="true">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <ellipse cx="12" cy="5" rx="8" ry="3" />
+                  <path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5" />
+                  <path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" />
+                </svg>
+              </span>
+            </div>
+            <h3>Databases</h3>
+            <div class="tag-row">
               <span class="tag">PostgreSQL</span>
               <span class="tag">MySQL</span>
               <span class="tag">Supabase</span>
             </div>
-          </div>
-          
-          <div class="skills-category">
-            <h3 class="category-title">Tools</h3>
-            <div class="category-tags">
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-card-top">
+              <span class="skill-index">04</span>
+              <span class="skill-icon" aria-hidden="true">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3" y="4" width="18" height="16" rx="2" />
+                  <path d="m7 9 3 3-3 3M13 15h4" />
+                </svg>
+              </span>
+            </div>
+            <h3>Tools</h3>
+            <div class="tag-row">
               <span class="tag">Git</span>
               <span class="tag">GitHub</span>
               <span class="tag">Vercel</span>
             </div>
-          </div>
-          
-          <div class="skills-category">
-            <h3 class="category-title">Cybersecurity Interests</h3>
-            <div class="category-tags">
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-card-top">
+              <span class="skill-index">05</span>
+              <span class="skill-icon" aria-hidden="true">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M12 3 4 6v6c0 4.4 3.4 8.4 8 9 4.6-.6 8-4.6 8-9V6l-8-3Z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+              </span>
+            </div>
+            <h3>Cybersecurity Interests</h3>
+            <div class="tag-row">
               <span class="tag">Network Security</span>
               <span class="tag">Web Application Security</span>
               <span class="tag">Computer Forensics</span>
               <span class="tag">Ethical Hacking</span>
             </div>
-          </div>
+          </article>
+        </div>
+
+        <div class="skills-footer">
+          <span class="mono">12 technologies / 5 areas</span>
+          <span class="skills-footer-line" aria-hidden="true"></span>
+          <span class="mono">Always building</span>
         </div>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section class="projects" id="projects" aria-label="Projects section">
-      <div class="section-header">
-        <h2 class="section-heading">Projects</h2>
-      </div>
-      
-      <div class="projects-grid">
-        <!-- Project 1 -->
-        <article class="project-card" tabindex="0" aria-label="Project: Teacher Management Portal">
-          <div class="project-image">
-            <div class="project-placeholder">TM</div>
+    <section class="section projects" id="projects" aria-label="Projects section">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-number" aria-hidden="true">04</span>
+          <div class="section-heading-group">
+            <span class="kicker">Selected work</span>
+            <h2 class="section-heading">latest <em>projects</em></h2>
+            <p class="section-subtitle">A selection of things I've built and shipped.</p>
           </div>
-          <div class="project-content">
-            <h3 class="project-title">Teacher Management Portal</h3>
-            <p class="project-description">A web-based system designed to support teacher workflows and academic management.</p>
-            <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">HTML5</span>
-              <span class="tag">CSS3</span>
+        </header>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <article class="project-card">
+            <div class="project-top">
+              <span class="project-index" aria-hidden="true">01</span>
+              <span class="project-type">Web app</span>
             </div>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link" target="_blank" rel="noopener" aria-label="GitHub repository">GitHub</a>
-            <a href="#" class="project-link project-link--demo" target="_blank" rel="noopener" aria-label="Live demo">Demo</a>
-            <svg class="project-arrow" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
-            </svg>
-          </div>
-        </article>
-        
-        <!-- Project 2 -->
-        <article class="project-card" tabindex="0" aria-label="Project: Facilitator Dashboard">
-          <div class="project-image">
-            <div class="project-placeholder">FD</div>
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Facilitator Dashboard</h3>
-            <p class="project-description">A centralized dashboard for organizing academic information and simplifying administrative workflows.</p>
-            <div class="project-tags">
-              <span class="tag">Node.js</span>
-              <span class="tag">React</span>
-              <span class="tag">MongoDB</span>
+
+            <div class="browser-frame">
+              <div class="browser-bar" aria-hidden="true">
+                <span class="browser-dots"><i></i><i></i><i></i></span>
+                <span class="browser-url">teacher-portal</span>
+                <span class="browser-tag">App</span>
+              </div>
+              <div class="project-preview project-preview--portal" aria-hidden="true">
+                <div class="preview-ui preview-ui--portal">
+                  <div class="preview-sidebar">
+                    <span class="preview-logo">TM</span>
+                    <span class="preview-nav-line"></span>
+                    <span class="preview-nav-line"></span>
+                    <span class="preview-nav-line"></span>
+                    <span class="preview-nav-line"></span>
+                    <span class="preview-avatar"></span>
+                  </div>
+                  <div class="preview-main">
+                    <div class="preview-topline">
+                      <span class="preview-heading-line"></span>
+                      <span class="preview-chip"></span>
+                    </div>
+                    <div class="preview-stat-row">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <div class="preview-table">
+                      <span class="preview-table-row"></span>
+                      <span class="preview-table-row"></span>
+                      <span class="preview-table-row"></span>
+                      <span class="preview-table-row"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link" target="_blank" rel="noopener" aria-label="GitHub repository">GitHub</a>
-            <a href="#" class="project-link project-link--demo" target="_blank" rel="noopener" aria-label="Live demo">Demo</a>
-            <svg class="project-arrow" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
-            </svg>
-          </div>
-        </article>
-        
-        <!-- Project 3 -->
-        <article class="project-card" tabindex="0" aria-label="Project: Acadtrack">
-          <div class="project-image">
-            <div class="project-placeholder">AT</div>
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Acadtrack</h3>
-            <p class="project-description">A student enrollment and attendance monitoring project using fingerprint-based identification.</p>
-            <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">Computer Vision</span>
-              <span class="tag">Flask</span>
+
+            <div class="project-body">
+              <h3 class="project-title">Teacher Management Portal</h3>
+              <p class="project-description">A web-based system designed to support teacher workflows and academic management.</p>
+              <div class="tag-row">
+                <span class="tag">Python</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link" target="_blank" rel="noopener" aria-label="GitHub repository">
+                  <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                  </svg>
+                  GitHub
+                </a>
+                <a href="#" class="project-link project-link--demo" target="_blank" rel="noopener" aria-label="Live demo">
+                  Demo
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M7 17 17 7M8 7h9v9" />
+                  </svg>
+                </a>
+              </div>
             </div>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link" target="_blank" rel="noopener" aria-label="GitHub repository">GitHub</a>
-            <a href="#" class="project-link project-link--demo" target="_blank" rel="noopener" aria-label="Live demo">Demo</a>
-            <svg class="project-arrow" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
-            </svg>
-          </div>
-        </article>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card">
+            <div class="project-top">
+              <span class="project-index" aria-hidden="true">02</span>
+              <span class="project-type">Web app</span>
+            </div>
+
+            <div class="browser-frame">
+              <div class="browser-bar" aria-hidden="true">
+                <span class="browser-dots"><i></i><i></i><i></i></span>
+                <span class="browser-url">facilitator-dashboard</span>
+                <span class="browser-tag">App</span>
+              </div>
+              <div class="project-preview project-preview--dashboard" aria-hidden="true">
+                <div class="preview-ui preview-ui--dashboard">
+                  <div class="preview-dashboard-top">
+                    <span class="preview-avatar preview-avatar--round"></span>
+                    <span class="preview-heading-line"></span>
+                    <span class="preview-chip"></span>
+                  </div>
+                  <div class="preview-welcome">
+                    <span class="preview-welcome-title"></span>
+                    <span class="preview-welcome-sub"></span>
+                    <span class="preview-btn"></span>
+                  </div>
+                  <div class="preview-card-row">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <h3 class="project-title">Facilitator Dashboard</h3>
+              <p class="project-description">A centralized dashboard for organizing academic information and simplifying administrative workflows.</p>
+              <div class="tag-row">
+                <span class="tag">Node.js</span>
+                <span class="tag">React</span>
+                <span class="tag">MongoDB</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link" target="_blank" rel="noopener" aria-label="GitHub repository">
+                  <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                  </svg>
+                  GitHub
+                </a>
+                <a href="#" class="project-link project-link--demo" target="_blank" rel="noopener" aria-label="Live demo">
+                  Demo
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M7 17 17 7M8 7h9v9" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card">
+            <div class="project-top">
+              <span class="project-index" aria-hidden="true">03</span>
+              <span class="project-type">Web app</span>
+            </div>
+
+            <div class="browser-frame">
+              <div class="browser-bar" aria-hidden="true">
+                <span class="browser-dots"><i></i><i></i><i></i></span>
+                <span class="browser-url">acadtrack</span>
+                <span class="browser-tag">App</span>
+              </div>
+              <div class="project-preview project-preview--scan" aria-hidden="true">
+                <div class="preview-ui preview-ui--scan">
+                  <div class="preview-scan-ring">
+                    <span class="preview-fingerprint"></span>
+                  </div>
+                  <div class="preview-scan-body">
+                    <span class="preview-heading-line"></span>
+                    <span class="preview-scan-line"></span>
+                    <span class="preview-scan-line"></span>
+                    <span class="preview-scan-line"></span>
+                    <span class="preview-btn"></span>
+                  </div>
+                  <div class="preview-scan-list">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <h3 class="project-title">Acadtrack</h3>
+              <p class="project-description">A student enrollment and attendance monitoring project using fingerprint-based identification.</p>
+              <div class="tag-row">
+                <span class="tag">Python</span>
+                <span class="tag">Computer Vision</span>
+                <span class="tag">Flask</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link" target="_blank" rel="noopener" aria-label="GitHub repository">
+                  <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                  </svg>
+                  GitHub
+                </a>
+                <a href="#" class="project-link project-link--demo" target="_blank" rel="noopener" aria-label="Live demo">
+                  Demo
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M7 17 17 7M8 7h9v9" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- Development Approach Section -->
-    <section class="approach" id="approach" aria-label="Development approach section">
-      <div class="section-header">
-        <h2 class="section-heading">How I approach development.</h2>
-      </div>
-      
-      <div class="approach-timeline">
-        <div class="timeline-item">
-          <div class="timeline-step">01</div>
-          <div class="timeline-content">
-            <h3 class="timeline-title">Understand</h3>
-            <p class="timeline-description">Identify the problem and user requirements.</p>
+    <section class="section approach" id="approach" aria-label="Development approach section">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-number" aria-hidden="true">05</span>
+          <div class="section-heading-group">
+            <span class="kicker">Process</span>
+            <h2 class="section-heading">my <em>process</em></h2>
+            <p class="section-subtitle">How I take an idea from problem to polished product.</p>
           </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-step">02</div>
-          <div class="timeline-content">
-            <h3 class="timeline-title">Design</h3>
-            <p class="timeline-description">Establish a clear structure and user experience.</p>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-step">03</div>
-          <div class="timeline-content">
-            <h3 class="timeline-title">Build</h3>
-            <p class="timeline-description">Implement functionality using clean, maintainable code.</p>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-step">04</div>
-          <div class="timeline-content">
-            <h3 class="timeline-title">Refine</h3>
-            <p class="timeline-description">Test, debug, and improve performance and security.</p>
-          </div>
+        </header>
+
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-number" aria-hidden="true">01</div>
+            <div class="timeline-content">
+              <span class="timeline-kicker">Understand</span>
+              <h3>Identify the problem.</h3>
+              <p>Identify the problem and user requirements before writing a line of code.</p>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-number" aria-hidden="true">02</div>
+            <div class="timeline-content">
+              <span class="timeline-kicker">Design</span>
+              <h3>Establish the structure.</h3>
+              <p>Establish a clear structure and user experience that supports the people using it.</p>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-number" aria-hidden="true">03</div>
+            <div class="timeline-content">
+              <span class="timeline-kicker">Build</span>
+              <h3>Ship clean code.</h3>
+              <p>Implement functionality using clean, maintainable code that is built to last.</p>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-number" aria-hidden="true">04</div>
+            <div class="timeline-content">
+              <span class="timeline-kicker">Refine</span>
+              <h3>Test and improve.</h3>
+              <p>Test, debug, and improve performance and security until the experience feels right.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact" aria-label="Contact section">
-      <div class="section-header">
-        <h2 class="section-heading">Let's build something meaningful.</h2>
-      </div>
-      
-      <div class="contact-container">
-        <div class="contact-description">
-          <p>
-            I'm open to discussing web development projects, collaboration opportunities, and interesting technical challenges. Feel free to reach out via email or connect with me on social platforms.
-          </p>
+    <section class="section contact" id="contact" aria-label="Contact section">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-number" aria-hidden="true">06</span>
+          <div class="section-heading-group">
+            <span class="kicker">Contact</span>
+            <h2 class="section-heading">let's <em>connect</em></h2>
+            <p class="section-subtitle">Have a project in mind or just want to talk tech? Reach out.</p>
+          </div>
+        </header>
+
+        <div class="contact-grid">
+          <div class="contact-copy">
+            <p>I'm open to discussing web development projects, collaboration opportunities, and interesting technical challenges. Feel free to reach out via email or connect with me on social platforms.</p>
+            <a href="mailto:markoys@example.com" class="btn btn-light">
+              Send me an email
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 12h14m0 0-5-5m5 5-5 5" />
+              </svg>
+            </a>
+          </div>
+
+          <div class="contact-cards">
+            <a href="mailto:markoys@example.com" class="contact-card">
+              <span class="contact-icon" aria-hidden="true">
+                <svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+              </span>
+              <span class="contact-card-text">
+                <span class="contact-label">Email</span>
+                <span class="contact-value">markoys@example.com</span>
+              </span>
+              <span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a href="https://github.com/fionapapas" class="contact-card" target="_blank" rel="noopener">
+              <span class="contact-icon" aria-hidden="true">
+                <svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+              </span>
+              <span class="contact-card-text">
+                <span class="contact-label">GitHub</span>
+                <span class="contact-value">github.com/fionapapas</span>
+              </span>
+              <span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a href="https://linkedin.com/in/fiona" class="contact-card" target="_blank" rel="noopener">
+              <span class="contact-icon" aria-hidden="true">
+                <svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+                </svg>
+              </span>
+              <span class="contact-card-text">
+                <span class="contact-label">LinkedIn</span>
+                <span class="contact-value">linkedin.com/in/fiona</span>
+              </span>
+              <span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
-        
-        <div class="contact-links">
-          <div class="contact-link">
-            <svg class="contact-link-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
-            </svg>
-            <span>Email me</span>
-            <a href="mailto:markoys@example.com" class="contact-link-text" aria-label="Email Markoys">markoys@example.com</a>
-          </div>
-          
-          <div class="contact-link">
-            <svg class="contact-link-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-            </svg>
-            <span>GitHub</span>
-            <a href="https://github.com/markoys" class="contact-link-text" target="_blank" rel="noopener" aria-label="GitHub profile">github.com/markoys</a>
-          </div>
-          
-          <div class="contact-link">
-            <svg class="contact-link-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
-            </svg>
-            <span>LinkedIn</span>
-            <a href="https://linkedin.com/in/markoys" class="contact-link-text" target="_blank" rel="noopener" aria-label="LinkedIn profile">linkedin.com/in/markoys</a>
-          </div>
-        </div>
       </div>
+
+      <div class="contact-word" data-parallax="0.05" aria-hidden="true">Let's Build</div>
     </section>
   </main>
 
   <!-- Footer -->
   <footer class="footer" aria-label="Site footer">
-    <div class="footer-container">
-      <a href="#home" class="footer-logo">Portfolio</a>
-      
+    <div class="container footer-container">
+      <a href="#home" class="footer-logo" aria-label="Fiona Lynn Papas — home">FLP<span>.</span></a>
+
       <ul class="footer-links" aria-label="Footer navigation links">
         <li><a href="#home" class="footer-link">Home</a></li>
         <li><a href="#about" class="footer-link">About</a></li>
         <li><a href="#skills" class="footer-link">Skills</a></li>
         <li><a href="#projects" class="footer-link">Projects</a></li>
+        <li><a href="#approach" class="footer-link">Approach</a></li>
         <li><a href="#contact" class="footer-link">Contact</a></li>
       </ul>
-      
-      <p class="footer-copyright">Copyright © <span id="copyright-year"></span>. All rights reserved.</p>
-      
+
       <div class="footer-social">
         <a href="https://github.com/fionapapas" class="footer-social-link" target="_blank" rel="noopener" aria-label="GitHub profile" title="GitHub">
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          <svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
           </svg>
         </a>
-        
+
         <a href="https://linkedin.com/in/fiona" class="footer-social-link" target="_blank" rel="noopener" aria-label="LinkedIn profile" title="LinkedIn">
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+          <svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
           </svg>
         </a>
       </div>
+
+      <p class="footer-copyright">Copyright © <span id="copyright-year"></span> Fiona Lynn Papas. All rights reserved.</p>
     </div>
   </footer>
 

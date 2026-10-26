@@ -1,6 +1,6 @@
-# Minimalist Professional Portfolio
+# Fiona Lynn Papas — Portfolio
 
-A complete, professional, minimalist, and responsive personal portfolio website for a full-stack developer with an interest in cybersecurity.
+A responsive, editorial-style personal portfolio for a full-stack developer and cybersecurity enthusiast. Built with semantic HTML, vanilla CSS, and vanilla JavaScript — no frameworks or build tools.
 
 ## 📁 Project Structure
 
@@ -11,24 +11,24 @@ portfolio/
 ├── css/style.css       # Styles with CSS variables and animations
 ├── js/script.js        # Vanilla JavaScript interactions
 ├── assets/
-│   ├── images/         # Project placeholder images (SVG)
-│   ├── icons/          # SVG icons (resume, GitHub, LinkedIn)
+│   ├── images/         # Portrait images and legacy placeholder art
+│   ├── icons/          # Legacy SVG icons (UI now uses inline icons)
 │   └── resume/         # Resume download file
 └── README.md           # This file
 ```
 
 ## ✨ Features
 
-- **Light, professional blue-and-gray design** with CSS color variables
-- **Responsive layout** - works from 375px to 1440px+
+- **Layered editorial design** — oversized display type, numbered sections, and a framed portrait
+- **Light blue-and-gray palette** driven by CSS custom properties
+- **Subtle CSS 3D** — portrait tilt, parallax background words, and offset depth shadows
+- **Browser-style project previews** built entirely in CSS
+- **Responsive layout** — verified from 320px to 1440px+
 - **Smooth animations** using CSS transitions and Intersection Observer
-- **Accessibility-first** - semantic HTML, keyboard navigation, focus states
-- **Respects `prefers-reduced-motion`** - all animations can be disabled
-- **Static website** - no build tools, no backend, runs directly in browser
-- **Mobile-friendly** - hamburger menu with smooth toggle
-- **Back-to-top button** - appears on scroll
-- **Scroll-triggered reveals** - subtle fade/slide animations
-- **Sticky navbar** - transitions on scroll with backdrop blur
+- **Accessibility-first** — semantic HTML, keyboard navigation, focus states, and a focus-trapped mobile menu
+- **Respects `prefers-reduced-motion`** — tilt, parallax, and reveal animations are disabled
+- **Static website** — no build tools, no backend, runs directly in the browser
+- **Sticky navbar** — transitions on scroll with backdrop blur
 
 ## 🛠️ Customization
 
@@ -38,24 +38,24 @@ All design tokens are defined as CSS variables in `:root`:
 ```css
 :root {
   /* Reference palette */
-  --color-light-gray: #f6f6f6;
+  --color-light-gray: #f3f6fa;
   --color-light-blue: #d6e4f0;
   --color-royal-blue: #1e56a0;
   --color-navy-blue: #163172;
-
-  /* Neutral helpers */
+  --color-deep-navy: #0a1730;
   --color-white: #ffffff;
-  --color-body-text: #3a4a61;
-  --color-muted-text: #4f5f76;
 
   /* Semantic theme tokens */
   --bg: var(--color-light-gray);
+  --bg-soft: #e8f0f8;
   --surface: var(--color-white);
   --primary: var(--color-royal-blue);
   --secondary: var(--color-light-blue);
   --accent: var(--color-navy-blue);
-  --text-body: var(--color-body-text);
-  --border: var(--color-light-blue);
+  --heading: var(--color-navy-blue);
+  --text-body: #43536a;
+  --text-muted: #5a6a80;
+  --border: rgba(22, 49, 114, 0.12);
 }
 ```
 
@@ -65,14 +65,15 @@ tokens.
 
 ### Replace Content
 
-1. **Personal information**: Edit the HTML to update your name, title, and description
-2. **Skills**: Add/remove tags in the `.skills-category` sections
-3. **Projects**: Replace the placeholder SVGs with real project images, update titles/descriptions
+1. **Personal information**: Edit the hero, about, and contact copy in `index.html`
+2. **Skills**: Add or remove `.tag` elements inside each `.skill-card`
+3. **Projects**: Update titles, descriptions, tags, and links; the previews are CSS mockups in `index.html`
 4. **Contact**: Update the `mailto:` link and GitHub/LinkedIn URLs
-5. **Resume**: Replace `assets/resume/resume.pdf` with your actual resume
+5. **Resume**: Replace `assets/resume/resume.pdf` with the actual resume file
+6. **Portrait**: Replace `assets/images/fiona-portrait.jpg` and `fiona-portrait-540.jpg`, keeping the 3:4 aspect ratio
 
-### Add Real Project Images
-Replace the SVG placeholder images in `assets/images/` with actual PNG/JPG images, or keep the SVGs as solid-color placeholders.
+### Add Real Project Screenshots
+The project previews are built from CSS UI mockups, so they stay sharp at any size. To use screenshots instead, replace the `.project-preview` contents with an `<img>` and keep the browser chrome around it.
 
 ### Change Navigation Links
 Update the `href` attributes in the navbar to link to your actual projects or external sites.
@@ -111,27 +112,28 @@ No build tools required. Simply:
 ## 📱 Testing
 
 Test at these widths:
-- **375px** - Mobile phones
-- **768px** - Tablets  
-- **1024px** - Laptops
-- **1440px** - Desktop monitors
+- **320px / 390px** — Mobile phones
+- **768px** — Tablets
+- **1024px** — Small laptops
+- **1440px** — Desktop monitors
 
 Verify:
 - No horizontal overflow
-- Mobile menu opens/closes properly
-- Scroll animations trigger correctly
+- Hero stacks cleanly below 900px
+- Mobile menu opens, traps focus, and closes properly
+- Scroll reveals and parallax trigger correctly
 - Navbar transitions on scroll
 - Back-to-top button appears/disappears
 - Reduced motion preference respected
 
 ## 🎨 Design Decisions
 
-- **Mobile-first approach** - styles cascade from small to large screens
-- **`clamp()` for typography** - fluid resizing between breakpoints
-- **CSS Grid + Flexbox** - for layout flexibility
-- **Intersection Observer** - for scroll reveals (respects reduced motion)
-- **Subtle transitions** - no distracting effects, professional feel
-- **Light theme** - clean blue-and-gray palette with strong contrast
+- **Editorial layout** — oversized Anton display type paired with Bricolage Grotesque body copy
+- **Layered depth** — offset frames, outlined numbers, and giant background words instead of heavy 3D libraries
+- **CSS Grid + Flexbox** — for the hero split, section grids, and responsive cards
+- **`clamp()` for typography** — fluid resizing between breakpoints
+- **Intersection Observer** — for scroll reveals (respects reduced motion)
+- **Light theme** — airy blue-and-gray palette with a deep navy contact section for contrast
 
 ---
 
