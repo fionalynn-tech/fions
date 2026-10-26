@@ -8,8 +8,8 @@
    ----------------------------------------------- */
 const state = {
   reducedMotion: false,
-  lastScrollY: 0,
   mobileMenuOpen: false,
+  lastFocusedElement: null,
 };
 
 /* -----------------------------------------------
@@ -17,255 +17,303 @@ const state = {
    ----------------------------------------------- */
 const dom = {
   navbar: document.querySelector('.navbar'),
-  navbarContainer: document.querySelector('.navbar-container'),
   navbarLinks: document.querySelectorAll('.navbar-link'),
+  mobileLinks: document.querySelectorAll('.mobile-link'),
   navbarToggle: document.querySelector('.navbar-toggle'),
   mobileMenu: document.querySelector('.mobile-menu'),
   mobileMenuClose: document.querySelector('.mobile-menu-close'),
-  skipLink: document.querySelector('.skip-link'),
-  scrollIndicators: document.querySelectorAll('.hero-scroll-indicator'),
   backToTop: document.querySelector('.back-to-top'),
+  footer: document.querySelector('.footer'),
   copyrightYear: document.getElementById('copyright-year'),
   sections: document.querySelectorAll('section[id]'),
-  projectCards: document.querySelectorAll('.project-card'),
 };
 
 /* -----------------------------------------------
-   Initialize Reduced Motion Detection
+   Reduced Motion Detection
    ----------------------------------------------- */
 function initReducedMotion() {
-  if ('matchMedia' in window) {
-    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    state.reducedMotion = reducedMotionQuery.matches;
-    
-    reducedMotionQuery.addEventListener('change', (e) => {
-      state.reducedMotion = e.matches;
-    });
-  }
+  if (!('matchMedia' in window)) return;
+
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  state.reducedMotion = reducedMotionQuery.matches;
+
+  reducedMotionQuery.addEventListener('change', (event) => {
+    state.reducedMotion = event.matches;
+  });
 }
 
 /* -----------------------------------------------
    Intersection Observer for Scroll Reveals
    ----------------------------------------------- */
 function initScrollReveal() {
-  if (state.reducedMotion) return;
-  
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1,
-  };
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
+  if (state.reducedMotion || !('IntersectionObserver' in window)) return;
+
+  const revealGroups = [
+    { selector: '.about-info-blocks .info-block', delay: 0.08 },
+    { selector: '.project-card', delay: 0.1 },
+    { selector: '.timeline-item', delay: 0.08 },
+  ];
+
+  const observer = new IntersectionObserver(
+    (entries, revealObserver) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    },
+    {
+      root: null,
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.12,
+    }
+  );
+
+  revealGroups.forEach(({ selector, delay }) => {
+    document.querySelectorAll(selector).forEach((element, index) => {
+      element.classList.add('reveal');
+      element.style.setProperty(
+        '--reveal-delay',
+        `${Math.min(index * delay, 0.4)}s`
+      );
+      observer.observe(element);
     });
-  }, observerOptions);
-  
-  // Observe all sections with animation classes
-  document.querySelectorAll('.about-info-blocks .info-block').forEach((el, index) => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(el);
-  });
-  
-  // Observe project cards
-  document.querySelectorAll('.project-card').forEach((el, index) => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
-    observer.observe(el);
-  });
-  
-  // Observe timeline items
-  document.querySelectorAll('.timeline-item').forEach((el, index) => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
-    observer.observe(el);
   });
 }
 
 /* -----------------------------------------------
-   Sticky Navbar Background Transition
+   Navbar and Back-to-Top Visibility
    ----------------------------------------------- */
 function initNavbarTransition() {
+  if (!dom.navbar) return;
+
   function handleScroll() {
     const scrollY = window.scrollY;
-    
-    if (scrollY > 100) {
-      dom.navbar.style.background = 'rgba(11, 13, 16, 0.95)';
-      dom.navbar.style.backdropFilter = 'blur(10px)';
-    } else {
-      dom.navbar.style.background = 'rgba(11, 13, 16, 0.8)';
-      dom.navbar.style.backdropFilter = 'blur(10px)';
+
+    dom.navbar.classList.toggle('scrolled', scrollY > 24);
+
+    if (dom.backToTop) {
+      // Hide the button while the footer is in view so it never covers
+      // the footer's social links.
+      const footerInView =
+        dom.footer &&
+        dom.footer.getBoundingClientRect().top < window.innerHeight - 24;
+      const showBackToTop = scrollY > 320 && !footerInView;
+
+      dom.backToTop.classList.toggle('visible', showBackToTop);
     }
-    
-    // Show/hide back-to-top button
-    if (scrollY > 300) {
-      dom.backToTop.classList.add('visible');
-    } else {
-      dom.backToTop.classList.remove('visible');
-    }
-    
-    state.lastScrollY = scrollY;
   }
-  
+
   window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+}
+
+function initBackToTop() {
+  if (!dom.backToTop) return;
+
+  dom.backToTop.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: state.reducedMotion ? 'auto' : 'smooth',
+    });
+  });
 }
 
 /* -----------------------------------------------
    Smooth Scrolling for Anchor Links
    ----------------------------------------------- */
 function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    // Let the skip link use native fragment navigation so the main
+    // content receives focus for keyboard and screen-reader users.
+    if (anchor.classList.contains('skip-link')) return;
+
+    anchor.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      const targetId = anchor.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+
       const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        const headerOffset = 80;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: state.reducedMotion ? 'auto' : 'smooth',
-        });
-      }
+      if (!targetElement) return;
+
+      const headerOffset = (dom.navbar?.offsetHeight ?? 76) + 12;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: state.reducedMotion ? 'auto' : 'smooth',
+      });
     });
   });
 }
 
 /* -----------------------------------------------
-   Mobile Menu Toggle
+   Mobile Menu
    ----------------------------------------------- */
+function getMobileMenuFocusableElements() {
+  if (!dom.mobileMenu) return [];
+  return Array.from(
+    dom.mobileMenu.querySelectorAll(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )
+  );
+}
+
+function openMobileMenu() {
+  if (!dom.mobileMenu || !dom.navbarToggle) return;
+
+  state.lastFocusedElement = dom.navbarToggle;
+  state.mobileMenuOpen = true;
+
+  dom.mobileMenu.classList.add('active');
+  dom.navbarToggle.classList.add('active');
+  dom.navbarToggle.setAttribute('aria-expanded', 'true');
+  dom.mobileMenu.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+
+  // Wait for the menu to become visible before moving focus into it.
+  window.requestAnimationFrame(() => {
+    if (state.mobileMenuOpen && dom.mobileMenuClose) {
+      dom.mobileMenuClose.focus({ preventScroll: true });
+    }
+  });
+}
+
+function closeMobileMenu({ restoreFocus = true } = {}) {
+  if (!dom.mobileMenu || !dom.navbarToggle) return;
+
+  state.mobileMenuOpen = false;
+
+  dom.mobileMenu.classList.remove('active');
+  dom.navbarToggle.classList.remove('active');
+  dom.navbarToggle.setAttribute('aria-expanded', 'false');
+  dom.mobileMenu.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+
+  if (
+    restoreFocus &&
+    state.lastFocusedElement instanceof HTMLElement &&
+    document.contains(state.lastFocusedElement)
+  ) {
+    state.lastFocusedElement.focus({ preventScroll: true });
+  }
+
+  state.lastFocusedElement = null;
+}
+
 function initMobileMenu() {
   if (!dom.navbarToggle || !dom.mobileMenu) return;
-  
+
   dom.navbarToggle.addEventListener('click', () => {
-    state.mobileMenuOpen = !state.mobileMenuOpen;
-    dom.mobileMenu.classList.toggle('active', state.mobileMenuOpen);
-    dom.navbarToggle.setAttribute('aria-expanded', state.mobileMenuOpen);
-    dom.mobileMenu.setAttribute('aria-hidden', !state.mobileMenuOpen);
-    document.body.style.overflow = state.mobileMenuOpen ? 'hidden' : '';
+    if (state.mobileMenuOpen) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
   });
-  
-  dom.mobileMenuClose.addEventListener('click', () => {
-    state.mobileMenuOpen = false;
-    dom.mobileMenu.classList.remove('active');
-    dom.navbarToggle.setAttribute('aria-expanded', false);
-    dom.mobileMenu.setAttribute('aria-hidden', true);
-    document.body.style.overflow = '';
+
+  if (dom.mobileMenuClose) {
+    dom.mobileMenuClose.addEventListener('click', () => closeMobileMenu());
+  }
+
+  dom.mobileMenu.querySelectorAll('.mobile-link').forEach((link) => {
+    link.addEventListener('click', () => closeMobileMenu());
   });
-  
-  // Close menu when a link is clicked
-  dom.mobileMenu.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', () => {
-      state.mobileMenuOpen = false;
-      dom.mobileMenu.classList.remove('active');
-      dom.navbarToggle.setAttribute('aria-expanded', false);
-      dom.mobileMenu.setAttribute('aria-hidden', true);
-      document.body.style.overflow = '';
-    });
+
+  document.addEventListener('keydown', (event) => {
+    if (!state.mobileMenuOpen) return;
+
+    if (event.key === 'Escape') {
+      closeMobileMenu();
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+
+    const focusableElements = getMobileMenuFocusableElements();
+    if (!focusableElements.length) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === firstElement) {
+      event.preventDefault();
+      lastElement.focus();
+    } else if (!event.shiftKey && document.activeElement === lastElement) {
+      event.preventDefault();
+      firstElement.focus();
+    }
   });
+
+  window.addEventListener(
+    'resize',
+    () => {
+      if (window.innerWidth > 768 && state.mobileMenuOpen) {
+        closeMobileMenu({ restoreFocus: false });
+        dom.navbar?.querySelector('.navbar-logo')?.focus({ preventScroll: true });
+      }
+    },
+    { passive: true }
+  );
 }
 
 /* -----------------------------------------------
    Active Section Highlighting
    ----------------------------------------------- */
 function initSectionHighlighting() {
-  const navbarLinks = document.querySelectorAll('.navbar-link');
-  
+  if (!dom.navbarLinks.length || !dom.sections.length) return;
+
+  let ticking = false;
+
   function highlightSection() {
-    const scrollY = window.pageYOffset;
-    
-    dom.sections.forEach(section => {
-      const sectionHeight = section.offsetHeight;
-      const sectionTop = section.offsetTop - 100;
-      const sectionId = section.getAttribute('id');
-      
-      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-        navbarLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${sectionId}`) {
-            link.classList.add('active');
-          }
-        });
+    const navbarHeight = dom.navbar?.offsetHeight ?? 76;
+    const scrollPosition = window.scrollY + navbarHeight + 40;
+    let currentSectionId = '';
+
+    dom.sections.forEach((section) => {
+      if (scrollPosition >= section.offsetTop) {
+        currentSectionId = section.id;
+      }
+    });
+
+    [...dom.navbarLinks, ...dom.mobileLinks].forEach((link) => {
+      const isActive = link.getAttribute('href') === `#${currentSectionId}`;
+      link.classList.toggle('active', isActive);
+
+      if (isActive) {
+        link.setAttribute('aria-current', 'location');
+      } else {
+        link.removeAttribute('aria-current');
       }
     });
   }
-  
-  window.addEventListener('scroll', highlightSection, { passive: true });
-  
-  // Initial check
+
+  function handleScroll() {
+    if (ticking) return;
+
+    ticking = true;
+    window.requestAnimationFrame(() => {
+      highlightSection();
+      ticking = false;
+    });
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('resize', highlightSection, { passive: true });
   highlightSection();
-}
-
-/* -----------------------------------------------
-   Project Card Hover Effects
-   ----------------------------------------------- */
-function initProjectCardHover() {
-  document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      if (state.reducedMotion) return;
-      card.style.transform = 'translateY(-4px)';
-      card.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.3)';
-    });
-    
-    card.addEventListener('mouseleave', () => {
-      if (state.reducedMotion) return;
-      card.style.transform = '';
-      card.style.boxShadow = '';
-    });
-  });
-}
-
-/* -----------------------------------------------
-   Button Hover Effects
-   ----------------------------------------------- */
-function initButtonHover() {
-  document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('mouseenter', () => {
-      if (state.reducedMotion) return;
-    });
-    
-    btn.addEventListener('focus', () => {
-      if (state.reducedMotion) return;
-    });
-  });
 }
 
 /* -----------------------------------------------
    Copyright Year Update
    ----------------------------------------------- */
 function initCopyrightYear() {
-  const today = new Date();
-  const year = today.getFullYear();
+  const year = new Date().getFullYear();
+
   if (dom.copyrightYear) {
     dom.copyrightYear.textContent = year;
-  }
-}
-
-/* -----------------------------------------------
-   Skip Link Focus Management
-   ----------------------------------------------- */
-function initSkipLink() {
-  if (dom.skipLink) {
-    dom.skipLink.addEventListener('focus', () => {
-      dom.skipLink.classList.add('focus');
-    });
-    
-    dom.skipLink.addEventListener('blur', () => {
-      dom.skipLink.classList.remove('focus');
-    });
   }
 }
 
@@ -274,17 +322,13 @@ function initSkipLink() {
    ----------------------------------------------- */
 function init() {
   initReducedMotion();
-  initScrollReveal();
   initNavbarTransition();
-  initSmoothScroll();
+  initScrollReveal();
   initMobileMenu();
+  initSmoothScroll();
   initSectionHighlighting();
-  initProjectCardHover();
-  initButtonHover();
+  initBackToTop();
   initCopyrightYear();
-  initSkipLink();
-  
-  console.log('Portfolio initialized successfully');
 }
 
 // DOMContentLoaded event
